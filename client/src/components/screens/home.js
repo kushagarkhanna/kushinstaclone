@@ -26,7 +26,6 @@ const Home=()=>{
             body:JSON.stringify({postedid:id})
         }).then(res=>res.json())
         .then(result=>{
-         
             const newData= data.map(item=>{
                 if(item._id==result._id){
                     return result

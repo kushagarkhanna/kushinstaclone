@@ -44,11 +44,11 @@ const Navbar=()=>{
         headers:{
           "Content-Type":"application/json"
         },
-        body:JSON.stringify({query:query1})
+        body:JSON.stringify({query1:query1})
       }).then(res=>res.json())
       .then(result=>{
         //console.log(result)
-        setUserdetails(result.posts)
+        setUserdetails(result.result)
       })
     }
 
@@ -75,7 +75,7 @@ const Navbar=()=>{
                       <Link to={item._id==state._id?'/profile':'/profile/'+item._id} onClick={()=>{
                         M.Modal.getInstance(searchModel.current).close()
                         setSearch('')
-                      }} >  <li> class="collection-item">{item.email}</li></Link>
+                      }} >  <li class="collection-item">{item.email}</li></Link>
                     )
                   })
                 }
