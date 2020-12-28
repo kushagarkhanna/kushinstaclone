@@ -75,6 +75,8 @@ const Home=()=>{
             })
         }).then(res=>res.json())
         .then(result=>{
+            console.log(data)
+            console.log(result)
             const newData= data.map(item=>{
                 if(item._id==result._id){
                     return result
@@ -87,6 +89,28 @@ const Home=()=>{
             console.log(err)
         })
     }
+
+    // const deletecomment=(postedid,commentid)=>{
+    //     fetch('/deletecomment',{
+    //         method:"delete",
+    //         headers:{
+    //             "Content-Type":"application/json",
+    //             "Authorization":"Bearer "+localStorage.getItem("jwt")
+    //         },
+    //         body:JSON.stringify({
+    //             postedid,
+    //             commentid
+    //         })
+    //     }).then(res=>res.json())
+    //         .then(result=>{
+    //             console.log(result)
+    //             const newData=data.filter((item)=>{
+    //                 return item.comments._id !==result.comments._id
+    //             })
+    //             setData(newData)
+            
+    //     })
+    // }
 
     const deletepost=(postedid)=>{
         fetch(`/deletepost/${postedid}`,{
@@ -116,7 +140,6 @@ const Home=()=>{
                 >delete</i>}
                 {item.postedby._id==state._id && <i class="material-icons"
                 style={{float:"right",padding:"0px 10px 0px 0px"}}
-                
                 >create</i>}
                 </h4>
                 <div className="card-image">
@@ -138,16 +161,24 @@ const Home=()=>{
                     {
                         item.comments.map(record=>{
                             return(
-                                <h6><span style={{fontWeight:"500"}}>{record.postedby.name}</span>{record.text}</h6>
+                                <h6><span style={{fontWeight:"500"}}>{record.postedby.name}</span>{record.text}
+                                {/* {item.postedby._id==state._id && <i class="material-icons"
+                                style={{float:"right",padding:"0px 10px 0px 0px"}}
+                                onClick={()=>deletecomment(item._id,record._id)}
+                                >delete</i>} */}
+                                </h6>
                             )
                         })
+                
                     }
+                    
                     <form onSubmit={(e)=>{
                     e.preventDefault()
                     makecomment(e.target[0].value,item._id)
                     }
                     }>
                     <input type="text" placeholder="add a comment" />
+                    
                     </form>
                 </div>
             </div>
