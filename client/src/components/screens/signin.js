@@ -22,7 +22,7 @@ const Signin=()=>{
         }).then(res=>res.json())
         .then(data=>{
             console.log(data)
-            if(data.error){
+            if(data.err){
                 M.toast({html:data.error,classes:"blue"})
             }else{
                 localStorage.setItem("jwt",data.token)
