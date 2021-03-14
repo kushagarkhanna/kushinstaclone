@@ -23,7 +23,7 @@ const Signin=()=>{
         .then(data=>{
             console.log(data)
             if(data.err){
-                M.toast({html:data.error,classes:"blue"})
+                M.toast({html:data.err,classes:"blue"})
             }else{
                 localStorage.setItem("jwt",data.token)
                 localStorage.setItem("user",JSON.stringify( data.user))
